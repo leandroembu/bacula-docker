@@ -29,3 +29,5 @@ COPY baculum-sudoers /etc/sudoers.d/baculum
 
 # Configuring user permissions
 RUN usermod -aG bacula www-data && chown -R www-data:bacula /opt/bacula/working /opt/bacula/etc && chmod -R g+rwx /opt/bacula/working /opt/bacula/etc && a2enmod rewrite && a2ensite baculum-web baculum-api && service apache2 restart && sed -i 's/ident/trust/g; s/peer/trust/g; s/md5/trust/g' /var/lib/pgsql/data/pg_hba.conf && sed -i 's/ident/trust/g; s/peer/trust/g; s/md5/trust/g' /etc/postgresql/*/main/pg_hba.conf && service postgresql restart
+
+EXPOSE 9095 9096
